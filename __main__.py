@@ -41,7 +41,7 @@ if getenv("JAR_SIGNING_STORE", ""):
     signed_jar = f"{'.'.join(mod_file.split('.')[:-1])}-sgd.jar"
     run(
         [
-            "keytool", 
+            "jarsigner", 
             "-genkey", 
             "-alias",
             alias, 
