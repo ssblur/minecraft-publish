@@ -5,7 +5,7 @@ from subprocess import run
 from hashlib import md5
 
 def set_output(name, value):
-    eof = b64encode(randbytes(16))
+    eof = b64encode(randbytes(16)).decode("utf-8")
     with open(getenv("GITHUB_OUTPUT"), "a") as f:
         f.write(f"{name}<<{eof}{value}{eof}\n")
 
