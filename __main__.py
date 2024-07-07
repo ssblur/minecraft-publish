@@ -42,17 +42,16 @@ if getenv("JAR_SIGNING_STORE", ""):
     run(
         [
             "jarsigner", 
-            "-alias",
-            alias, 
+            "-keystore", 
+            "keystore.jks",
             "-keypass", 
             key_pass,
             "-storepass", 
             store_pass, 
-            "-keystore", 
-            "keystore.jks",
             "-signedjar",
             signed_jar,
-            mod_file
+            mod_file,
+            alias
         ]
     )
     mod_file = signed_jar
