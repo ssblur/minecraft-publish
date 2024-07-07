@@ -42,7 +42,6 @@ if getenv("JAR_SIGNING_STORE", ""):
     run(
         [
             "jarsigner", 
-            "-genkey", 
             "-alias",
             alias, 
             "-keypass", 
