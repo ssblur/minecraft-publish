@@ -7,7 +7,7 @@ from hashlib import md5
 def set_output(name, value):
     eof = b64encode(randbytes(16)).decode("utf-8")
     with open(getenv("GITHUB_OUTPUT"), "a") as f:
-        f.write(f"{name}<<{eof}{value}{eof}\n")
+        f.write(f"{name}<<{eof}\n{value}\n{eof}\n")
 
 def curse_java_version():
     min_java = int(getenv("MIN_JAVA_VERSION"))
