@@ -99,7 +99,7 @@ runs:
         MOD_LOADER: "${{ inputs.mod-loader }}"
         MOD_ENVIRONMENT: "${{ inputs.mod-environment }}"
         MIN_JAVA_VERSION: "${{ inputs.min-java-version }}"
-        MIN_JAVA_VERSION: "${{ inputs.min-java-version }}"
+        MAX_JAVA_VERSION: "${{ inputs.max-java-version }}"
         JAR_SIGNING_STORE: "${{ inputs.jar-signing-store }}"
         JAR_SIGNING_ALIAS: "${{ inputs.jar-signing-alias }}"
         JAR_SIGNING_STORE_PASS: "${{ inputs.jar-signing-store-pass }}"
