@@ -33,7 +33,7 @@ set_output("curse_version", ",".join([
 mod_file = getenv("MOD_FILE")
 if getenv("JAR_SIGNING_STORE", ""):
     store = getenv("JAR_SIGNING_STORE")
-    with open("keystore.jks", "w") as f:
+    with open("keystore.jks", "wb") as f:
         f.write(b64decode(store))
     alias = getenv("JAR_SIGNING_ALIAS")
     store_pass = getenv("JAR_SIGNING_STORE_PASS")
@@ -60,13 +60,13 @@ if getenv("JAR_SIGNING_STORE", ""):
 set_output("mod_file", mod_file)
 
 digest = ""
-with open(mod_file, "r") as f:
+with open(mod_file, "rb") as f:
     file_hash = md5()
     while chunk := f.read(8192):
         file_hash.update(chunk)
     digest = file_hash.digest()
 
-with open(f"{mod_file}.md5", "w") as f:
+with open(f"{mod_file}.md5", "wb") as f:
     f.write(digest)
 set_output("md5_file", f"{mod_file}.md5")
 
