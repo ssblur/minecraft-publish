@@ -38,7 +38,7 @@ if getenv("JAR_SIGNING_STORE", ""):
     alias = getenv("JAR_SIGNING_ALIAS")
     store_pass = getenv("JAR_SIGNING_STORE_PASS")
     key_pass = getenv("JAR_SIGNING_KEY_PASS")
-    signed_jar = f"{'.'.join(mod_file.split['.'][:-1])}-sgd.jar"
+    signed_jar = f"{'.'.join(mod_file.split('.')[:-1])}-sgd.jar"
     run(
         [
             "keytool", 
