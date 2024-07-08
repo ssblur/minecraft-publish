@@ -18,13 +18,8 @@ def curse_java_version():
         output.append(f"Java {i}") 
     return ",".join(output)
 
-def curse_minecraft_version():
-    patch_version = getenv("MC_VERSION")
-    minor_version = ".".join(patch_version.split(".")[:-1])
-    return ",".join([patch_version, minor_version])
-
 set_output("curse_version", ",".join([
-    curse_minecraft_version(),
+    getenv("MC_VERSION"),
     curse_java_version(),
     getenv("MOD_LOADER"),
     getenv("MOD_ENVIRONMENT")
