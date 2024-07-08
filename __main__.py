@@ -9,26 +9,16 @@ def set_output(name, value):
     with open(getenv("GITHUB_OUTPUT"), "a") as f:
         f.write(f"{name}<<{eof}\n{value}\n{eof}\n")
 
-def curse_java_version():
+def java_version():
     min_java = int(getenv("MIN_JAVA_VERSION"))
     max_java = int(getenv("MAX_JAVA_VERSION"))
 
     output = []
     for i in range(min_java, max_java+1):
         output.append(f"Java {i}") 
-    return ",".join(output)
+    return "\n".join(output)
 
-def curse_minecraft_version():
-    patch_version = getenv("MC_VERSION")
-    minor_version = ".".join(patch_version.split(".")[:-1])
-    return f"Minecraft {minor_version}:{patch_version}"
-
-set_output("curse_version", ",".join([
-    curse_minecraft_version(),
-    curse_java_version(),
-    getenv("MOD_LOADER").title(),
-    getenv("MOD_ENVIRONMENT")
-]))
+set_output("java_version", java_version())
 
 mod_file = getenv("MOD_FILE")
 if getenv("JAR_SIGNING_STORE", ""):
@@ -69,6 +59,8 @@ with open(f"{mod_file}.md5", "wb") as f:
 set_output("md5_file", f"{mod_file}.md5")
 
 changelog = getenv("CHANGELOG")
+with open(f"CHANGELOG", "w") as f:
+    f.write(changelog)
 if getenv("INCLUDE_MD5_CHANGELOG") == "true":
     changelog += "\n\nMD5: {digest}\n"
 set_output("changelog", changelog)

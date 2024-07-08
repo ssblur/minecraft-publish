@@ -59,10 +59,6 @@ inputs:
     description: 'The CurseForge auth token to use'
     required: false
     default: ''
-  curse-relations:
-    description: 'Mod relations on CurseForge'
-    required: false
-    default: ''
 
   modrinth-project-id:
     description: 'The Project ID on Modrinth'
@@ -72,8 +68,13 @@ inputs:
     description: 'The Modrinth auth token to use'
     required: false
     default: ''
-  modrinth-dependencies:
-    description: 'Dependencies on Modrinth'
+  
+  dependencies:
+    description: 'Mod Dependencies'
+    required: false
+    default: ''
+  github-token:
+    description: 'GitHub Token'
     required: false
     default: ''
 runs:
@@ -104,25 +105,24 @@ runs:
         JAR_SIGNING_ALIAS: "${{ inputs.jar-signing-alias }}"
         JAR_SIGNING_STORE_PASS: "${{ inputs.jar-signing-store-pass }}"
         JAR_SIGNING_KEY_PASS: "${{ inputs.jar-signing-key-pass }}"
-    - name: "Upload to CurseForge"
-      if: ${{ inputs.curse-token }} != ''
-      uses: itsmeow/curseforge-upload@v3
+    - name: "Upload"
+      uses: Kir-Antipov/mc-publish@v3.3
       with:
-        file_path: "${{ steps.process.outputs.mod_file }}"
-        game_endpoint: "minecraft"
-        relations: "${{ inputs.curse-relations }}"
-        game_versions: ${{ steps.process.outputs.curse_version }}
-        project_id: "${{ inputs.curse-project-id }}"
-        token: "${{ inputs.curse-token }}"
-        changelog_type: text
-        changelog: ${{ steps.process.outputs.changelog }}
-    - name: Upload to Modrinth
-      uses: cloudnode-pro/modrinth-publish@1.0.0
-      with:
-        token: ${{ inputs.modrinth-token }}
-        project: ${{ inputs.modrinth-project-id }}
-        file: "${{ steps.process.outputs.mod_file }}"
-        changelog: ${{ steps.process.outputs.changelog }}
-        loaders: "${{ inputs.mod-loader }}"
-        dependencies: "${{ inputs.modrinth-dependencies }}"
-        api-domain: "api.modrinth.com"
+        modrinth-id: ${{ inputs.modrinth-project-id }}
+        modrinth-token: ${{ inputs.modrinth-token }}
+
+        curseforge-id: ${{ inputs.curse-project-id }}
+        curseforge-token: ${{ inputs.curse-token }}
+
+        github-token: ${{ inputs.github-token }}
+
+        changelog-file: CHANGELOG
+
+        files: |
+          ${{ steps.process.outputs.mod_file }}
+          ${{ steps.process.outputs.md5_file }}
+
+        loaders: ${{ inputs.mod-loader }}
+        game-versions: ${{ inputs.minecraft-version }}
+        dependencies: ${{ inputs.dependencies }}
+        java: ${{ steps.process.outputs.java_version }}
