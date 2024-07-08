@@ -39,8 +39,6 @@ if getenv("JAR_SIGNING_STORE", ""):
     store_pass = getenv("JAR_SIGNING_STORE_PASS")
     key_pass = getenv("JAR_SIGNING_KEY_PASS")
     signed_jar = f"{'.'.join(mod_file.split('.')[:-1])}-sgd.jar"
-    run(["ls"]) #TODO: remove debug
-    run(["ls", "forge/build/libs"]) #TODO: remove debug
     run(
         [
             "jarsigner", 
