@@ -60,7 +60,7 @@ set_output("md5_file", f"{mod_file}.md5")
 
 changelog = getenv("CHANGELOG")
 with open(f"CHANGELOG", "w") as f:
-    f.write(changelog)
+    f.write(changelog.replace("\n", "\n\n"))
 if getenv("INCLUDE_MD5_CHANGELOG") == "true":
     changelog += "\n\nMD5: {digest}\n"
 set_output("changelog", changelog)
