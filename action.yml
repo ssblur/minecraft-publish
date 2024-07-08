@@ -125,4 +125,4 @@ runs:
         dependencies: ${{ inputs.dependencies }}
         java: ${{ steps.process.outputs.java_version }}
 
-        version: ${{ inputs.curse-project-id }}
+        version: ${{ inputs.version-name }}
