@@ -124,3 +124,5 @@ runs:
         game-versions: ${{ inputs.minecraft-version }}
         dependencies: ${{ inputs.dependencies }}
         java: ${{ steps.process.outputs.java_version }}
+
+        version: ${{ steps.process.outputs.version }}

@@ -46,6 +46,7 @@ if getenv("JAR_SIGNING_STORE", ""):
     )
     mod_file = signed_jar
 set_output("mod_file", mod_file)
+set_output("version", ".".join(mod_file.split(".")[:-1]))
 
 digest = ""
 with open(mod_file, "rb") as f:
