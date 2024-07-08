@@ -118,9 +118,7 @@ runs:
 
         changelog-file: CHANGELOG
 
-        files: |
-          ${{ steps.process.outputs.mod_file }}
-          ${{ steps.process.outputs.md5_file }}
+        files: ${{ steps.process.outputs.mod_file }}
 
         loaders: ${{ inputs.mod-loader }}
         game-versions: ${{ inputs.minecraft-version }}
