@@ -54,20 +54,20 @@ inputs:
   curse-project-id:
     description: 'The Project ID on CurseForge'
     required: false
-    default: ''
+    default: ${undefined}
   curse-token:
     description: 'The CurseForge auth token to use'
     required: false
-    default: ''
+    default: ${undefined}
 
   modrinth-project-id:
     description: 'The Project ID on Modrinth'
     required: false
-    default: ''
+    default: ${undefined}
   modrinth-token:
     description: 'The Modrinth auth token to use'
     required: false
-    default: ''
+    default: ${undefined}
   
   dependencies:
     description: 'Mod Dependencies'
